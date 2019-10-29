@@ -1,22 +1,21 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+    <div class="row justify-content-center">
+        {{-- @include('layouts.sidebar') --}}
 
-                <div class="panel-body">
-                    {{ $user->name }}
-                    @if($user->sex === 'm')
-                        male
-                    @elseif($user->sex === 'f')
-                        female
-                    @endif
-                    {{ $user->email }}
+        <div class="col-md-8">
+        @if($user->id === Auth::id())
+                <div class="row">
+                <div class="col-md-12">
+                    {{-- @include('posts.create') --}}
                 </div>
             </div>
+        @endif
+
+        {{-- @foreach ($posts as $post)
+            @include('posts.show')
+        @endforeach --}}
         </div>
     </div>
 </div>
