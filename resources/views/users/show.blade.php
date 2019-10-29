@@ -4,6 +4,10 @@
     <div class="row justify-content-center">
         {{-- @include('layouts.sidebar') --}}
 
+        @if($user->id == Auth::id())
+            <a href="{{url('/users/' . $user->id . '/edit')}}">edit</a>
+        @endif
+
         <div class="col-md-8">
         @if($user->id === Auth::id())
                 <div class="row">

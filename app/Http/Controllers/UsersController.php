@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -27,7 +29,11 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        if ($id != Auth::id()) {
+            abort(403, 'Forbidden');
+        }
+        $user = Auth::user();
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -39,7 +45,22 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($id != Auth::id()) {
+            abort(403, 'Forbidden');
+        }
+
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->sex = $request->sex;
+
+        if (!empty($request->password) && $request->password === $request->password_confirmation) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
+
+        return back();
     }
 
     /**
