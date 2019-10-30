@@ -70,6 +70,12 @@ class UsersController extends Controller
             $user->password = Hash::make($request->password);
         }
 
+        if (!empty($request->avatar)) {
+            $upload_path = 'public/users_' . Auth::id() . '/avatars';
+            $path = $request->file('avatar')->store($upload_path);
+            $fileName = str_replace($upload_path . '/', '', $path);
+            $user->avatar = $fileName;
+        }
         $user->save();
 
         return back();
