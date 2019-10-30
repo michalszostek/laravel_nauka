@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
-        /**
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -48,6 +49,17 @@ class UsersController extends Controller
         if ($id != Auth::id()) {
             abort(403, 'Forbidden');
         }
+
+        $this->validate($request, [
+            'name' => 'required|max:255|min:3',
+            'email' => [
+                'required',
+                'email',
+                'max:255',
+                Rule::unique('users')->ignore(Auth::id()),
+            ],
+            'password' => 'min:6|confirmed',
+        ]);
 
         $user = User::findOrFail($id);
         $user->name = $request->name;
