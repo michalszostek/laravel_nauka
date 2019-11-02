@@ -22,3 +22,5 @@ Route::get('/home', 'HomeController@index');
 Route::resource('/users', 'UsersController', ['except' => ['create', 'store', 'index']]);
 
 Route::get('/user_avatar/{id}/{size}', 'ImagesController@user_avatar');
+
+Route::get('/default_avatar/{sex}/{size}', 'ImagesController@default_avatar');

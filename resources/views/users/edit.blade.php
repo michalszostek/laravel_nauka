@@ -51,7 +51,6 @@
                                 </div>
                             </div>
 
-
                             <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
                                 <div class="col-md-8 col-md-offset-2">
                                     <label for="avatar" class="col-md-4 control-label">Avatar</label>

@@ -11,9 +11,20 @@ class ImagesController extends Controller
     public function user_avatar($id, $size)
     {
         $user = User::findOrFail($id);
-        $user_avatar_path = asset('storage/users_' . $user->id . '/avatars/' . $user->avatar);
+        $avatar_path = asset('storage/users_' . $user->id . '/avatars/' . $user->avatar);
 
-        $img = Image::make($user_avatar_path)
+        $img = Image::make($avatar_path)
+            ->fit($size)
+            ->response('jpg', 100);
+
+        return $img;
+    }
+
+    public function default_avatar($sex, $size)
+    {
+        $avatar_path = asset('storage/default_avatars/' . $sex . '.png');
+
+        $img = Image::make($avatar_path)
             ->fit($size)
             ->response('jpg', 100);
 
