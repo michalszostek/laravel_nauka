@@ -8,8 +8,7 @@
                     <div class="panel-body">
 
                         <div class="col-md-6 col-md-offset-3">
-                            <label class="col-md-4 control-label">avatar</label>
-                            <img class="img-responsive" src="{{asset('storage/users_' .$user->id . '/avatars/' .$user->avatar)}}" alt="user avatar">
+                            <img class="img-responsive" src="{{url('user_avatar/' . $user->id . '/200')}}" alt="user avatar">
                         </div>
 
                         <form action="{{url('/users/' . $user->id)}}" method="POST" enctype="multipart/form-data">
