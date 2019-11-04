@@ -13,6 +13,7 @@
     <!-- Styles -->
     <link href="{{ url('css/app.css') }}" rel="stylesheet">
 
+
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -39,6 +40,16 @@
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
+
+                <!-- user search form -->
+                <form action="{{ url('/search') }}" method="GET" class="form-inline ">
+                    <div class="input-group-prepend">
+                        <input class="form-control" type="text" placeholder="Search" aria-label="Search" name="q">
+                        <span>
+                                <button class="btn btn-outline-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </span>
+                    </div>
+                </form>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
