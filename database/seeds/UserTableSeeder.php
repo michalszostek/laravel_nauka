@@ -13,7 +13,7 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('pl_PL');
-        $numberOfUsers = 10;
+        $numberOfUsers = 25;
         $password = bcrypt('pass');
 
         for ($i = 1; $i <= $numberOfUsers; $i++) {
