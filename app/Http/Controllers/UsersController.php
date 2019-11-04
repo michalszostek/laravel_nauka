@@ -24,7 +24,6 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-
         $user->avatar_to_show = $this->show_avatar($user->id);
 
         return view('users.show', compact('user'));
