@@ -10,6 +10,11 @@ use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission', ['only' => ['edit', 'update']]);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -33,9 +38,6 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        if ($id != Auth::id()) {
-            abort(403, 'Forbidden');
-        }
         $user = Auth::user();
         return view('users.edit', compact('user'));
     }
@@ -49,10 +51,6 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($id != Auth::id()) {
-            abort(403, 'Forbidden');
-        }
-
         $this->validate($request, [
             'name' => 'required|max:255|min:3',
             'email' => [
