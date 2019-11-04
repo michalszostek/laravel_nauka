@@ -21,10 +21,15 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/search', 'SearchController@users');
 
-Route::resource('/users', 'UsersController', ['except' => ['create', 'store', 'index']]);
-
-Route::resource('/friends', 'FriendsController', ['only' => ['index', 'store', 'update', 'destroy']]);
-
 Route::get('/user_avatar/{id}/{size}', 'ImagesController@user_avatar');
 
 Route::get('/default_avatar/{sex}/{size}', 'ImagesController@default_avatar');
+
+Route::resource('/users', 'UsersController', ['except' => ['create', 'store', 'index']]);
+
+// friends
+Route::get('users/{user}/friends', 'FriendsController@index');
+Route::delete('/friends/{friend_id}', 'FriendsController@destroy');
+Route::patch('/friends/{friend_id}', 'FriendsController@accept');
+Route::post('/friends/{friend_id}', 'FriendsController@add');
+

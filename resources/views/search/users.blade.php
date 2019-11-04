@@ -18,10 +18,10 @@
                             <div class="row">
                                 @foreach ($results as $user)
                                     <div class="col-md-4 text-center">
-                                        <img src="{{$user->avatar}}" alt="user photo">
                                         <a href="{{ url('/users/' . $user->id) }}">
                                             <div>
                                                 <div class="card-body table-bordered mb-4">
+                                                    <img src="{{ url( 'user_avatar/' . $user->id . '/200' ) }}" alt="user photo">
                                                     <div class="card-footer bg-transparent">
                                                         <h6>{{ $user->name }}</h6>
                                                         <p>trener</p>

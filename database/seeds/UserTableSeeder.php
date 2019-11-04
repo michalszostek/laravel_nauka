@@ -34,10 +34,12 @@ class UserTableSeeder extends Seeder
                     case 'm':
                         $name = $faker->firstNameMale . ' ' . $faker->lastName;
                         $sex = 'm';
+                        $avatar = '';
                         break;
                     case 'f':
                         $name = $faker->firstNameFemale . ' ' . $faker->lastName;
                         $sex = 'f';
+                        $avatar = '';
                         break;
                 }
 
@@ -46,6 +48,7 @@ class UserTableSeeder extends Seeder
                     'sex' => $sex,
                     'email' => str_slug($name, '_') . '@' . $faker->freeEmailDomain,
                     'password' => $password,
+                    'avatar' => $avatar,
                 ]);
             }
         }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Friend;
+use Illuminate\Support\Facades\Auth;
 
 class FriendsController extends Controller
 {
@@ -17,15 +19,13 @@ class FriendsController extends Controller
     }
 
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function add($id)
     {
-        //
+        Friend::create([
+            'user_id' => Auth::id(),
+            'friend_id' => $id,
+        ]);
+        return back();
     }
 
 
@@ -36,7 +36,7 @@ class FriendsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function accept($friend_id)
     {
         //
     }
@@ -47,8 +47,8 @@ class FriendsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($friend_id)
     {
-        //
+
     }
 }

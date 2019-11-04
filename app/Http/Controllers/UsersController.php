@@ -24,8 +24,6 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        $user->avatar_to_show = $this->show_avatar($user->id);
-
         return view('users.show', compact('user'));
     }
 
@@ -90,22 +88,5 @@ class UsersController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function show_avatar($id)
-    {
-        $user = User::findOrFail($id);
-        if ($user->avatar === null) {
-            switch ($user->sex) {
-                case 'm':
-                    return url('default_avatar/m/200');
-                    break;
-                case 'f':
-                    return url('default_avatar/f/200');
-                    break;
-            }
-        } else {
-            return url('user_avatar/' . $id . '/200');
-        }
     }
 }
